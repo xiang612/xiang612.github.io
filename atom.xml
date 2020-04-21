@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://xiang612.github.io/"/>
+  <updated>2020-04-21T02:10:34.319Z</updated>
+  <id>http://xiang612.github.io/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>myFirstBlog</title>
+    <link href="http://xiang612.github.io/2020/04/21/myfirstblog/"/>
+    <id>http://xiang612.github.io/2020/04/21/myfirstblog/</id>
+    <published>2020-04-21T02:10:34.000Z</published>
+    <updated>2020-04-21T02:10:34.319Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://xiang612.github.io/2020/04/21/hello-world/"/>
+    <id>http://xiang612.github.io/2020/04/21/hello-world/</id>
+    <published>2020-04-21T02:02:30.965Z</published>
+    <updated>2020-04-21T02:02:30.965Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
