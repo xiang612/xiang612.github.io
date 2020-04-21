@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>Blog</title>
   
-  
+  <subtitle>Welcome To My Blog!</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xiang612.github.io/"/>
@@ -10,7 +10,7 @@
   <id>http://xiang612.github.io/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>xiang612</name>
     
   </author>
   
