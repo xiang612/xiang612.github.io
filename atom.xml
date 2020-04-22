@@ -5,9 +5,9 @@
   <subtitle>Welcome To My Blog!</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://xiang612.github.io/"/>
+  <link href="http://xiang612.github/"/>
   <updated>2020-04-22T03:35:51.743Z</updated>
-  <id>http://xiang612.github.io/</id>
+  <id>http://xiang612.github/</id>
   
   <author>
     <name>xiang612</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>C语言和内存</title>
-    <link href="http://xiang612.github.io/2020/04/22/c-yu-yan-he-nei-cun/"/>
-    <id>http://xiang612.github.io/2020/04/22/c-yu-yan-he-nei-cun/</id>
+    <link href="http://xiang612.github/2020/04/22/c-yu-yan-he-nei-cun/"/>
+    <id>http://xiang612.github/2020/04/22/c-yu-yan-he-nei-cun/</id>
     <published>2020-04-21T23:39:42.617Z</published>
     <updated>2020-04-22T03:35:51.743Z</updated>
     
@@ -41,8 +41,8 @@
   
   <entry>
     <title>myFirstBlog</title>
-    <link href="http://xiang612.github.io/2020/04/21/myfirstblog/"/>
-    <id>http://xiang612.github.io/2020/04/21/myfirstblog/</id>
+    <link href="http://xiang612.github/2020/04/21/myfirstblog/"/>
+    <id>http://xiang612.github/2020/04/21/myfirstblog/</id>
     <published>2020-04-21T02:10:34.000Z</published>
     <updated>2020-04-21T02:10:34.319Z</updated>
     
@@ -56,8 +56,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://xiang612.github.io/2020/04/21/hello-world/"/>
-    <id>http://xiang612.github.io/2020/04/21/hello-world/</id>
+    <link href="http://xiang612.github/2020/04/21/hello-world/"/>
+    <id>http://xiang612.github/2020/04/21/hello-world/</id>
     <published>2020-04-21T02:02:30.965Z</published>
     <updated>2020-04-21T02:02:30.965Z</updated>
     
