@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xiang612.github.io/"/>
-  <updated>2020-04-22T03:35:51.743Z</updated>
+  <updated>2020-04-23T07:36:57.224Z</updated>
   <id>http://xiang612.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>背包问题九讲</title>
+    <link href="http://xiang612.github.io/2020/04/23/bei-bao-wen-ti-jiu-jiang/"/>
+    <id>http://xiang612.github.io/2020/04/23/bei-bao-wen-ti-jiu-jiang/</id>
+    <published>2020-04-23T07:36:55.024Z</published>
+    <updated>2020-04-23T07:36:57.224Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;背包问题九讲 2.0 beta1.2&lt;/p&gt;
+&lt;h1 id=&quot;崔添翼-Tianyi-Cui-2012-05-08†&quot;&gt;&lt;a href=&quot;#崔添翼-Tianyi-Cui-2012-05-08†&quot; class=&quot;headerlink&quot; title=&quot;崔添翼 (Tianyi
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>C语言和内存</title>
