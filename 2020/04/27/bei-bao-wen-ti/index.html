@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="C语言和内存, Blog">
+    <meta name="keywords" content="背包问题, Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>C语言和内存 | Blog</title>
+    <title>背包问题 | Blog</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">C语言和内存</h1>
+                    <h1 class="description center-align post-title">背包问题</h1>
                 </div>
             </div>
         </div>
@@ -443,21 +443,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-04-22
+                    2020-04-27
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-04-22
+                    2020-04-27
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    90
+                    470
                 </div>
                 
 
@@ -479,15 +479,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h5 id="1-32位内存空间为2-32-4GB；64位内存空间为2-48-256TB"><a href="#1-32位内存空间为2-32-4GB；64位内存空间为2-48-256TB" class="headerlink" title="1.32位内存空间为2^32=4GB；64位内存空间为2^48=256TB"></a>1.32位内存空间为2^32=4GB；64位内存空间为2^48=256TB</h5><h5 id="2-Linux环境下的内存分布："><a href="#2-Linux环境下的内存分布：" class="headerlink" title="2.Linux环境下的内存分布："></a>2.Linux环境下的内存分布：</h5><p>32位</p>
-<p><img src="/.io//73b0ed0a0be994a866aa6feeb71eafa0.png" alt="clipboard.png"></p>
-<p><img src="/.io//28289d385babbbf1314853616d8a6421.png" alt="clipboard.png"></p>
-<p><strong>注：静态数据区的数据只能初始化一次，之后的初始化语句无效</strong></p>
-<p>64位：</p>
-<p><img src="/.io//caad390eba63f9eed1d4a446cd3d489d.png" alt="clipboard.png"></p>
-<h5 id="3-Windows环境下的内存分布"><a href="#3-Windows环境下的内存分布" class="headerlink" title="3.Windows环境下的内存分布"></a>3.Windows环境下的内存分布</h5><p><img src="/.io//6e09ce84b75ed5673710ebccc071ada4.png" alt="clipboard.png"></p>
-<p><img src="/.io//c3ac0182d13813fdbc938b3a2d102457.png" alt="clipboard.png"></p>
-<p><strong>栈从高地址向低地址存储，堆从低地址向高地址存储</strong></p>
+                <p>1.01背包问题（每个物品只能选或者不选）<br>     f[i][j]表示只看前i个物品，总体积是j的情况下的最大总价值。<br>        暴力搜索：<br>            res=max{f[n][0<del>V]}<br>        动态规划：确定状态只有0和1，写出状态转移方程<br>             a.0（不选第i件物品）f[i][j][0]=f[i-1][j];   //从i-1到i没有改变<br>             b.1（选了第i件物品）f[i][j][1]=f[i-1][j-Ci]+Wi; //放了i后的体积是j，i-1的体积需要减去i的体积<br>             合并状态：f[i][j]=max(f[i-1][j],f[i-1][j-Ci]+Wi)<br>             时间复杂度：O(NV)   空间复杂度：O(NV)<br>        优化：第i件物品的状态只跟i-1的状态有关，即只需要用上一层数组，不需要全部数组<br>             a.滚动数组（新的数据覆盖旧的数组，即只保留上一层数组，所以只需要两行数组）<br>             b.一维数组  f[i]表示体积是i的情况下的最大总价值<br>                原状态方程先改成：f[j]=max(f[j],f[j-Ci]+Wi)<br>                    考虑到再计算时f[j-Ci]对应的是i-1时的状态且应该没有计算过，而j-Ci比j小，如果j从0</del>V遍历，那么f[j-Ci]一定已经被计算过，所以应该从V~0开始考虑<br>        tips：初始化时，如果将f都初始化为0则输出f[V],因为每一个容量都能由状态方程计算最大值，即此时f表示为&lt;=V时的最大总价值；若只初始化f[0]为0，则其余f为INF，只有放入物品后对应的那些容量能够求取最大值，其余容量均为INF，所以此时f表示容量恰为V时的最大值，因此需要遍历所有f找最大值<br>2.完全背包问题（）</p>
 
             </div>
             <hr/>
@@ -513,7 +505,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://xiang612.github.io/2020/04/22/c-yu-yan-he-nei-cun/">http://xiang612.github.io/2020/04/22/c-yu-yan-he-nei-cun/</a>
+                    <a href="http://xiang612.github.io/2020/04/27/bei-bao-wen-ti/">http://xiang612.github.io/2020/04/27/bei-bao-wen-ti/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -716,9 +708,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/04/27/bei-bao-wen-ti/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="背包问题">
+                        
+                        <span class="card-title">背包问题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            1.01背包问题（每个物品只能选或者不选）     f[i][j]表示只看前i个物品，总体积是j的情况下的最大总价值。        暴力搜索：            res=max{f[n][0V]}        动态规划：确定状态只有
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            xiang612
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/04/23/bei-bao-wen-ti-jiu-jiang/">
                     <div class="card-image">
@@ -741,45 +772,8 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-23
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            xiang612
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/04/21/myfirstblog/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="myFirstBlog">
-                        
-                        <span class="card-title">myFirstBlog</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-21
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-04-23
                             </span>
                         <span class="publish-author">
                             

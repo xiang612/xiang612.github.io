@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xiang612.github.io/"/>
-  <updated>2020-04-23T07:36:57.224Z</updated>
+  <updated>2020-04-27T15:17:23.173Z</updated>
   <id>http://xiang612.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>背包问题</title>
+    <link href="http://xiang612.github.io/2020/04/27/bei-bao-wen-ti/"/>
+    <id>http://xiang612.github.io/2020/04/27/bei-bao-wen-ti/</id>
+    <published>2020-04-27T14:53:23.773Z</published>
+    <updated>2020-04-27T15:17:23.173Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;1.01背包问题（每个物品只能选或者不选）&lt;br&gt;     f[i][j]表示只看前i个物品，总体积是j的情况下的最大总价值。&lt;br&gt;        暴力搜索：&lt;br&gt;            res=max{f[n][0&lt;del&gt;V]}&lt;br&gt;       
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>背包问题九讲</title>
