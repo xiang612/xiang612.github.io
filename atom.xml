@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xiang612.github.io/"/>
-  <updated>2020-04-27T15:17:23.173Z</updated>
+  <updated>2020-05-03T07:51:16.531Z</updated>
   <id>http://xiang612.github.io/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>背包问题</title>
-    <link href="http://xiang612.github.io/2020/04/27/bei-bao-wen-ti/"/>
-    <id>http://xiang612.github.io/2020/04/27/bei-bao-wen-ti/</id>
-    <published>2020-04-27T14:53:23.773Z</published>
-    <updated>2020-04-27T15:17:23.173Z</updated>
+    <link href="http://xiang612.github.io/2020/05/03/bei-bao-wen-ti/"/>
+    <id>http://xiang612.github.io/2020/05/03/bei-bao-wen-ti/</id>
+    <published>2020-05-03T07:51:15.838Z</published>
+    <updated>2020-05-03T07:51:16.531Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;p&gt;1.01背包问题（每个物品只能选或者不选）&lt;br&gt;     f[i][j]表示只看前i个物品，总体积是j的情况下的最大总价值。&lt;br&gt;        暴力搜索：&lt;br&gt;            res=max{f[n][0&lt;del&gt;V]}&lt;br&gt;       
+          &lt;h2 id=&quot;1-01背包问题（每个物品只能选或者不选）&quot;&gt;&lt;a href=&quot;#1-01背包问题（每个物品只能选或者不选）&quot; class=&quot;headerlink&quot;
         
       
     
