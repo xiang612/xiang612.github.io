@@ -68,7 +68,7 @@
     <link href="http://xiang612.github.io/2020/04/22/c-yu-yan-he-nei-cun/"/>
     <id>http://xiang612.github.io/2020/04/22/c-yu-yan-he-nei-cun/</id>
     <published>2020-04-21T23:39:42.617Z</published>
-    <updated>2020-05-20T01:17:39.037Z</updated>
+    <updated>2020-05-20T02:29:19.284Z</updated>
     
     <summary type="html">
     
@@ -76,10 +76,7 @@
       
         
         
-          &lt;p&gt;###1. 32位内存空间为2^32=4GB；64位内存空间为2^48=256TB&lt;/p&gt;
-&lt;p&gt;###2. Linux环境下的内存分布：&lt;/p&gt;
-&lt;p&gt;   ####32位&lt;/p&gt;
-&lt;p&gt;&lt;img
+          &lt;h3 id=&quot;1-32位内存空间为2-32-4GB；64位内存空间为2-48-256TB&quot;&gt;&lt;a href=&quot;#1-32位内存空间为2-32-4GB；64位内存空间为2-48-256TB&quot; class=&quot;headerlink&quot;
         
       
     
