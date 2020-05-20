@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="背包问题, Blog">
+    <meta name="keywords" content="背包问题总结, Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>背包问题 | Blog</title>
+    <title>背包问题总结 | Blog</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">背包问题</h1>
+                    <h1 class="description center-align post-title">背包问题总结</h1>
                 </div>
             </div>
         </div>
@@ -443,14 +443,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-03
+                    2020-05-20
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-03
+                    2020-05-20
                 </div>
                 
 
@@ -479,53 +479,58 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="1-01背包问题（每个物品只能选或者不选）"><a href="#1-01背包问题（每个物品只能选或者不选）" class="headerlink" title="1.01背包问题（每个物品只能选或者不选）"></a>1.01背包问题（每个物品只能选或者不选）</h2><p>f[i][j]表示只看前i个物品，总体积是j的情况下的最大总价值。</p>
-<p>暴力搜索：</p>
-<p>res=max{f[n][0~V]}</p>
-<p>动态规划：确定状态只有0和1，写出状态转移方程</p>
-<p>a.0（不选第i件物品）f[i][j][0]=f[i-1][j]; //从i-1到i没有改变</p>
-<p>b.1（选了第i件物品）f[i][j][1]=f[i-1][j-Ci]+Wi;<br>//放了i后的体积是j，i-1的体积需要减去i的体积</p>
-<p>合并状态：f[i][j]=max(f[i-1][j],f[i-1][j-Ci]+Wi)</p>
-<p>时间复杂度：O(NV) 空间复杂度：O(NV)</p>
-<p>优化：第i件物品的状态只跟i-1的状态有关，即只需要用上一层数组，不需要全部数组</p>
-<p>a.滚动数组（新的数据覆盖旧的数组，即只保留上一层数组，所以只需要两行数组）</p>
-<p>b.一维数组 f[i]表示体积是i的情况下的最大总价值</p>
-<p>原状态方程先改成：f[j]=max(f[j],f[j-Ci]+Wi)</p>
-<p>假如枚举到：i = 3, j = 8, v[3] = 5, w[3] = 1</p>
-<p>二维：dp[3][8] = max(dp[2][8], dp[2][3] + w[3])<br>此时的dp[2][8]和dp[2][3]都是上一轮的状态值</p>
-<p>一维：dp[8] = max(dp[8], dp[3] + w[3]) 我们要保证dp[8]和dp[3]都是上一轮的状态值</p>
-<p>按照逆序的顺序，一维dp数组的更新顺序为：dp[8], dp[7], dp[6], … ,<br>dp[3]也就是说，在本轮更新的值，不会影响本轮中其他未更新的值！较小的index对应的状态是上一轮的状态值！</p>
-<p>如果按照顺序进行更新，dp[3] = max(dp[3], dp[0] +<br>w[0])，对dp[3]的状态进行了更新，那么在更新dp[8]时，用到的dp[3]就不是上一轮的状态了，不满足动态规划的要求。</p>
-<p>tips：初始化时，如果将f都初始化为0则输出f[V],因为每一个容量都能由状态方程计算最大值，即此时f表示为&lt;=V时的最大总价值；若只初始化f[0]为0，则其余f为INF，只有放入物品后对应的那些容量能够求取最大值，其余容量均为INF，所以此时f表示容量恰为V时的最大值，因此需要遍历所有f找最大值</p>
-<h2 id="2-完全背包问题（每个物品不限数目）"><a href="#2-完全背包问题（每个物品不限数目）" class="headerlink" title="2.完全背包问题（每个物品不限数目）"></a>2.完全背包问题（每个物品不限数目）</h2><p>二维数组：跟01背包问题类似，只不过多了选择k件，k最大为V/Ci，即f[i][j]=max(f[i-1][j],f[i-1][j-kCi]+kWi)</p>
-<p>一维数组：f[i]依旧表示在总体积是i的条件下的最大价值 f[j]=max(f[j],f[j-Ci]+Wi)</p>
-<p>一般方法：在01背包的基础上，再嵌套一层循环k从0~V/Ci</p>
-<p>优化：在01背包的基础上，将体积从Ci~V循环，即按顺序的顺序，与01背包恰好相反</p>
-<p>从01背包我们知道，按顺序更新f时，f[j-Ci]在本轮已经更新过，也就是说f[j-Ci]是i时刻的状态而不是i-1时刻的状态，即此时第i件物品已经放入，且可能已放入多件</p>
-<h2 id="3-多重背包问题（每件物品最多放置s件）"><a href="#3-多重背包问题（每件物品最多放置s件）" class="headerlink" title="3.多重背包问题（每件物品最多放置s件）"></a>3.多重背包问题（每件物品最多放置s件）</h2><p>暴力解法：在01背包的基础上，加一层循环，件数从0~s循环<br>f[j]=max(f[j],f[j-Ci]+wi,f[j-2*ci]+2*ci,…f[j-s*ci]+s*wi)</p>
-<p>优化：将多重背包问题转化成01背包问题，将s件拆出来放进可选物品，每个物品只能选或者不选，怎么拆？</p>
-<p>a.二进制优化（对于任意一个数s，s以内的所有数都能用几个数的和表示，最少需要几个数）</p>
-<p>每个数可选可不选，n个数可以表示2^n个数，2^n&gt;=s，所以n=floor(logs/log2)，但是当s不是整数幂的时候会多出来一部分，对于最后一个数，用s-1-2-4…一直到负数停止。例如：0~7<br>可以用1、2、4表示；0~10在0~7的基础上扩展了3，所以可以用1、2、4、3表示，或者用s-1-2-4=3得到</p>
-<p>此题就转化成物品个数被拆成n*log(s)个的01背包问题;</p>
-<p>b.单调队列优化<br>（第二层循环将体积j归类，按j%Ci分类，对于f[j-k*Ci]只能从与Ci取相同余数的那一类状态转化来）</p>
-<p>f[j]=max(f[j-Ci]+Wi,f[j-2*Ci]+2*wi,…f[j-k*Ci]+k*wi)<br>转化成单调队列（k个数的滑动窗口）里面找最大值</p>
-<p>f[j+Ci]=max(f[j]+wi,f[j-Ci]+Wi,…)</p>
-<h2 id="4-混合背包问题（物品分三类，一次，无限次和有限次）"><a href="#4-混合背包问题（物品分三类，一次，无限次和有限次）" class="headerlink" title="4.混合背包问题（物品分三类，一次，无限次和有限次） "></a>4.混合背包问题（物品分三类，一次，无限次和有限次） </h2><p>将多重背包问题拆分转化成01背包问题，问题就转化成01背包和完全背包问题，根据物品属于哪一类，将容量从小到大或者从大到小枚举</p>
-<h2 id="5-二维费用的背包问题（在01背包基础上每个物品属性扩展了重量）"><a href="#5-二维费用的背包问题（在01背包基础上每个物品属性扩展了重量）" class="headerlink" title="5.二维费用的背包问题（在01背包基础上每个物品属性扩展了重量）"></a>5.二维费用的背包问题（在01背包基础上每个物品属性扩展了重量）</h2><p>增加一维表示重量 f[i][j]表示在体积为i重量为j的情况下的最大总价值,</p>
-<p>因为是01背包问题，多一层循环，从大到小枚举体积和重量<br>f[i][j]=max(f[i][j],f[i-a][j-b]+c)</p>
-<h2 id="6-分组背包问题（N组物品，每组物品只能选一种物品）"><a href="#6-分组背包问题（N组物品，每组物品只能选一种物品）" class="headerlink" title="6.分组背包问题（N组物品，每组物品只能选一种物品）"></a>6.分组背包问题（N组物品，每组物品只能选一种物品）</h2><p>本质还是01背包问题，每一组只能选或者不选，如果选的话，一组就退化成某一个物品,针对选择哪一个物品再增加一层循环</p>
-<p>f[j]=max(f[j],f[j-c[0]]+w[0],f[j-c[1]]+w[1],…f[j-c[s-1]]+w[s-1])<br>体积依旧从大到小循环</p>
-<p>多重背包实际上是分组背包的一种特殊情况，每一组选择k个，实际就是将这k个打包成一个物品</p>
-<h2 id="7-背包问题求方案数（01背包基础上最优解的方案数）"><a href="#7-背包问题求方案数（01背包基础上最优解的方案数）" class="headerlink" title="7.背包问题求方案数（01背包基础上最优解的方案数）"></a>7.背包问题求方案数（01背包基础上最优解的方案数）</h2><p>增加一个数组g[i]表示体积恰好为i时的方案数，此时f在初始化时只能把f[0]初始化为0，其余初始化为-INF；</p>
-<p>f[j]=max(f[j],f[j-ci]+wi)<br>g[j]=f[j]==(f[j-ci]+wi)?g[j]+g[j-ci]:(f[j]&gt;(f[j-ci]+wi)?g[j]:g[j-ci])</p>
-<p>然后遍历所有f找最大值，将最大值对应的g累加起来</p>
-<h2 id="8-背包问题求具体方案（在7的基础上输出所有可行方案中字典序最小的）"><a href="#8-背包问题求具体方案（在7的基础上输出所有可行方案中字典序最小的）" class="headerlink" title="8.背包问题求具体方案（在7的基础上输出所有可行方案中字典序最小的）"></a>8.背包问题求具体方案（在7的基础上输出所有可行方案中字典序最小的）</h2><p>根据7求出的最优解反推第i个物品有没有选</p>
-<p>f[i][j]表示只看前i个物品，总体积是j的情况下的最大总价值<br>f[i][j]=max(f[i-1][j],f[i-1][j-ci]+wi)</p>
-<p>最优解一定为f[n][m]<br>因而从后往前枚举物品，根据判断f[n][m]和f[n-1][m]以及f[n-1][m-c]+w中哪个数相等，从而判断n有没有选，如果两者相等，则表示i选或不选都可</p>
-<p>优化：题目要求输出字典序最小的解，假设存在一个包含第1个物品的最优解，为了确保字典序最小那么我们必然要选第一个。那么问题就转化成从2～N这些物品中找到最优解。之前的f(i,j)记录的都是前ii个物品总容量为jj的最优解，那么我们现在将f(i,j)定义为从第i个元素到最后一个元素总容量为j的最优解。接下来考虑状态转移：</p>
-<p>f(i,j)=max(f(i+1,j),f(i+1,j−v[i])+w[i])</p>
-<p>两种情况，第一种是不选第i个物品，那么最优解等同于从第i+1个物品到最后一个元素总容量为j的最优解；第二种是选了第i个物品，那么最优解等于当前物品的价值w[i]加上从第i+1个物品到最后一个元素总容量为j−v[i]的最优解。</p>
-<h2 id="9-有依赖的背包问题（类似于课程表，有前序物品要选的01背包问题）"><a href="#9-有依赖的背包问题（类似于课程表，有前序物品要选的01背包问题）" class="headerlink" title="9.有依赖的背包问题（类似于课程表，有前序物品要选的01背包问题）"></a>9.有依赖的背包问题（类似于课程表，有前序物品要选的01背包问题）</h2><p>背包问题和树形结构结合 依旧使用二维数组f[i][j] 从根节点从上往下递归<br>每个节点计算对应子节点下面不同体积下的最大价值，从其中选价值最大的那一组，从而转化成分组背包问题</p>
+                <p><strong>以下内容是笔者根据背包九讲以及B站up主大雪菜讲解视频后总结的一些笔记，欢迎各位同道中人不吝赐教</strong><br>附上链接：<br>　　CSDN博友分享(<a href="https://blog.csdn.net/yandaoqiusheng/article/details/84782655" target="_blank" rel="noopener">https://blog.csdn.net/yandaoqiusheng/article/details/84782655</a>)<br>　　B站学习视频(<a href="https://www.bilibili.com/video/BV1qt411Z7nE" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1qt411Z7nE</a>)</p>
+<hr>
+<h4 id="1-01背包问题（每个物品只能选或者不选）"><a href="#1-01背包问题（每个物品只能选或者不选）" class="headerlink" title="1. 01背包问题（每个物品只能选或者不选）"></a>1. 01背包问题（每个物品只能选或者不选）</h4><p>　　f[i][j]表示只看前i个物品，总体积是j的情况下的最大总价值。</p>
+<p>　　<strong>暴力搜索：</strong>　　　</p>
+<pre><code>res=max{f[n][0\~V]}</code></pre><p>　　<strong>动态规划：</strong>确定状态只有0和1，写出状态转移方程　　　　<br>　　　　a. 0（不选第i件物品）　　　　</p>
+<pre><code>f[i][j][0]=f[i-1][j]; //从i-1到i没有改变</code></pre><p>　　　　b. 1（选了第i件物品）</p>
+<pre><code>f[i][j][1]=f[i-1][j-Ci]+Wi;  //放了i后的体积是j，i-1的体积需要减去i的体积</code></pre><p>　　　　合并状态：</p>
+<pre><code>f[i][j]=max(f[i-1][j],f[i-1][j-Ci]+Wi)</code></pre><p>　　　<br>　　<strong>时间复杂度：O(NV) 空间复杂度：O(NV)</strong></p>
+<p>　　<strong>优化：</strong>第i件物品的状态只跟i-1的状态有关，即只需要用上一层数组，不需要全部数组</p>
+<p>　　　　a. 滚动数组（新的数据覆盖旧的数组，即只保留上一层数组，所以只需要两行数组）</p>
+<p>　　　　b. 一维数组 f[i]表示体积是i的情况下的最大总价值</p>
+<p>　　<strong>原状态方程先改成：</strong>　　　　</p>
+<pre><code>f[j]=max(f[j],f[j-Ci]+Wi)</code></pre><p>　　假如枚举到：i = 3, j = 8, v[3] = 5, w[3] = 1</p>
+<p>　　　　<strong>二维：</strong></p>
+<pre><code>dp[3][8] = max(dp[2][8], dp[2][3] + w[3]) // 此时的dp[2][8]和dp[2][3]都是上一轮的状态值</code></pre><p>　　　　<strong>一维：</strong>　　　　</p>
+<pre><code>dp[8] = max(dp[8], dp[3] + w[3]) 　//我们要保证dp[8]和dp[3]都是上一轮的状态值</code></pre><p>　　　　按照逆序的顺序，一维dp数组的更新顺序为：dp[8], dp[7], dp[6], … ,dp[3]，也就是说，在本轮更新的值，不会影响本轮中其他未更新的值！较小的index对应的状态是上一轮的状态值！<br>        如果按照顺序进行更新，dp[3] = max(dp[3], dp[0] + w[0])，对dp[3]的状态进行了更新，那么在更新dp[8]时，用到的dp[3]就不是上一轮的状态了，不满足动态规划的要求。</p>
+<p>　　<strong>tips：初始化时，如果将f都初始化为0则输出f[V],因为每一个容量都能由状态方程计算最大值，即此时f表示为&lt;=V时的最大总价值；若只初始化f[0]为0，则其余f为INF，只有放入物品后对应的那些容量能够求取最大值，其余容量均为INF，所以此时f表示容量恰为V时的最大值，因此需要遍历所有f找最大值</strong></p>
+<hr>
+<h4 id="2-完全背包问题（每个物品不限数目）"><a href="#2-完全背包问题（每个物品不限数目）" class="headerlink" title="2. 完全背包问题（每个物品不限数目）"></a>2. 完全背包问题（每个物品不限数目）</h4><p>　　<strong>二维数组：</strong>跟01背包问题类似，只不过多了选择k件，k最大为V/Ci，即：　　</p>
+<pre><code>f[i][j]=max(f[i-1][j],f[i-1][j-kCi]+kWi)</code></pre><p>　　<strong>一维数组：</strong>f[i]依旧表示在总体积是i的条件下的最大价值 　　</p>
+<pre><code>f[j]=max(f[j],f[j-Ci]+Wi)</code></pre><p>　　<strong>一般方法：</strong>在01背包的基础上，再嵌套一层循环k从0~V/Ci</p>
+<p>　　<strong>优化：</strong>在01背包的基础上，将体积从Ci~V循环，即按顺序的顺序，与01背包恰好相反</p>
+<p>　　　　从01背包我们知道，按顺序更新f时，f[j-Ci]在本轮已经更新过，也就是说f[j-Ci]是i时刻的状态而不是i-1时刻的状态，即此时第i件物品已经放入，且可能已放入多件</p>
+<hr>
+<h4 id="3-多重背包问题（每件物品最多放置s件）"><a href="#3-多重背包问题（每件物品最多放置s件）" class="headerlink" title="3. 多重背包问题（每件物品最多放置s件）"></a>3. 多重背包问题（每件物品最多放置s件）</h4><p>　　<strong>暴力解法：</strong>在01背包的基础上，加一层循环，件数从0~s循环　　</p>
+<pre><code>f[j]=max(f[j],f[j-Ci]+wi,f[j-2\*ci]+2\*ci,...f[j-s\*ci]+s\*wi)</code></pre><p>　　<strong>优化：</strong>将多重背包问题转化成01背包问题，将s件拆出来放进可选物品，每个物品只能选或者不选，怎么拆？</p>
+<p>　　　　<strong>a. 二进制优化</strong>（对于任意一个数s，s以内的所有数都能用几个数的和表示，最少需要几个数）</p>
+<p>　　　　每个数可选可不选，n个数可以表示2^n个数，2^n&gt;=s，所以n=floor(logs/log2)，但是当s不是整数幂的时候会多出来一部分，对于最后一个数，用s-1-2-4…一直到负数停止。<br>　　　　例如：0~7可以用1、2、4表示；0~10在0~7的基础上扩展了3，所以可以用1、2、4、3表示，或者用s-1-2-4=3得到</p>
+<p>　　　　此题就转化成物品个数被拆成n*log(s)个的01背包问题;</p>
+<p>　　　　<strong>b. 单调队列优化</strong>（第二层循环将体积j归类，按j%Ci分类，对于f[j-k*Ci]只能从与Ci取相同余数的那一类状态转化来）　　　　</p>
+<pre><code>f[j]=max(f[j-Ci]+Wi,f[j-2\*Ci]+2\*wi,...f[j-k\*Ci]+k\*wi)</code></pre><p>　　　　转化成单调队列（k个数的滑动窗口）里面找最大值　　　 </p>
+<pre><code>f[j+Ci]=max(f[j]+wi,f[j-Ci]+Wi,...)</code></pre><hr>
+<h4 id="4-混合背包问题（物品分三类，一次，无限次和有限次）"><a href="#4-混合背包问题（物品分三类，一次，无限次和有限次）" class="headerlink" title="4. 混合背包问题（物品分三类，一次，无限次和有限次）"></a>4. 混合背包问题（物品分三类，一次，无限次和有限次）</h4><p>　　将多重背包问题拆分转化成01背包问题，问题就转化成01背包和完全背包问题，根据物品属于哪一类，将容量从小到大或者从大到小枚举</p>
+<hr>
+<h4 id="5-二维费用的背包问题（在01背包基础上每个物品属性扩展了重量）"><a href="#5-二维费用的背包问题（在01背包基础上每个物品属性扩展了重量）" class="headerlink" title="5. 二维费用的背包问题（在01背包基础上每个物品属性扩展了重量）"></a>5. 二维费用的背包问题（在01背包基础上每个物品属性扩展了重量）</h4><p>　　增加一维表示重量 f[i][j]表示在体积为i重量为j的情况下的最大总价值,</p>
+<p>　　因为是01背包问题，多一层循环，从大到小枚举体积和重量　　</p>
+<pre><code>f[i][j]=max(f[i][j],f[i-a][j-b]+c)</code></pre><hr>
+<h4 id="6-分组背包问题（N组物品，每组物品只能选一种物品）"><a href="#6-分组背包问题（N组物品，每组物品只能选一种物品）" class="headerlink" title="6. 分组背包问题（N组物品，每组物品只能选一种物品）"></a>6. 分组背包问题（N组物品，每组物品只能选一种物品）</h4><p>　　本质还是01背包问题，每一组只能选或者不选，如果选的话，一组就退化成某一个物品,针对选择哪一个物品再增加一层循环　　</p>
+<pre><code>f[j]=max(f[j],f[j-c[0]]+w[0],f[j-c[1]]+w[1],...f[j-c[s-1]]+w[s-1])</code></pre><p>　　　　体积依旧从大到小循环</p>
+<p>　　<strong>多重背包实际上是分组背包的一种特殊情况，每一组选择k个，实际就是将这k个打包成一个物品</strong></p>
+<hr>
+<h4 id="7-背包问题求方案数（01背包基础上最优解的方案数）"><a href="#7-背包问题求方案数（01背包基础上最优解的方案数）" class="headerlink" title="7. 背包问题求方案数（01背包基础上最优解的方案数）"></a>7. 背包问题求方案数（01背包基础上最优解的方案数）</h4><p>　　增加一个数组g[i]表示体积恰好为i时的方案数，此时f在初始化时只能把f[0]初始化为0，其余初始化为-INF；</p>
+<pre><code>f[j]=max(f[j],f[j-ci]+wi)
+　　
+g[j]=f[j]==(f[j-ci]+wi)?g[j]+g[j-ci]:(f[j]\&gt;(f[j-ci]+wi)?g[j]:g[j-ci])</code></pre><p>　　然后遍历所有f找最大值，将最大值对应的g累加起来</p>
+<hr>
+<h4 id="8-背包问题求具体方案（在7的基础上输出所有可行方案中字典序最小的）"><a href="#8-背包问题求具体方案（在7的基础上输出所有可行方案中字典序最小的）" class="headerlink" title="8. 背包问题求具体方案（在7的基础上输出所有可行方案中字典序最小的）"></a>8. 背包问题求具体方案（在7的基础上输出所有可行方案中字典序最小的）</h4><p>　　根据7求出的最优解反推第i个物品有没有选<br>　　<br>　　<strong>f[i][j]表示只看前i个物品，总体积是j的情况下的最大总价值</strong>　</p>
+<pre><code>f[i][j]=max(f[i-1][j],f[i-1][j-ci]+wi)</code></pre><p>　　最优解一定为f[n][m]</p>
+<p>　　因而从后往前枚举物品，根据判断f[n][m]和f[n-1][m]以及f[n-1][m-c]+w中哪个数相等，从而判断n有没有选，如果两者相等，则表示i选或不选都可<br>　　<br>　　<strong>优化：</strong>题目要求输出字典序最小的解，假设存在一个包含第1个物品的最优解，为了确保字典序最小那么我们必然要选第一个。那么问题就转化成从2～N这些物品中找到最优解。之前的f(i,j)记录的都是前ii个物品总容量为jj的最优解，那么我们现在将f(i,j)定义为从第i个元素到最后一个元素总容量为j的最优解。接下来考虑状态转移：　　</p>
+<pre><code>f(i,j)=max(f(i+1,j),f(i+1,j−v[i])+w[i])</code></pre><p>　　两种情况，第一种是不选第i个物品，那么最优解等同于从第i+1个物品到最后一个元素总容量为j的最优解；第二种是选了第i个物品，那么最优解等于当前物品的价值w[i]加上从第i+1个物品到最后一个元素总容量为j−v[i]的最优解。</p>
+<hr>
+<h4 id="9-有依赖的背包问题（类似于课程表，有前序物品要选的01背包问题）"><a href="#9-有依赖的背包问题（类似于课程表，有前序物品要选的01背包问题）" class="headerlink" title="9. 有依赖的背包问题（类似于课程表，有前序物品要选的01背包问题）"></a>9. 有依赖的背包问题（类似于课程表，有前序物品要选的01背包问题）</h4><p>　　背包问题和树形结构结合 依旧使用二维数组f[i][j] 从根节点从上往下递归<br>　　每个节点计算对应子节点下面不同体积下的最大价值，从其中选价值最大的那一组，从而转化成分组背包问题</p>
 
             </div>
             <hr/>
@@ -551,7 +556,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://xiang612.github.io/2020/05/03/bei-bao-wen-ti/">http://xiang612.github.io/2020/05/03/bei-bao-wen-ti/</a>
+                    <a href="http://xiang612.github.io/2020/05/20/bei-bao-wen-ti-zong-jie/">http://xiang612.github.io/2020/05/20/bei-bao-wen-ti-zong-jie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -759,28 +764,24 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2020/05/03/bei-bao-wen-ti/">
+                <a href="/2020/05/20/bei-bao-wen-ti-zong-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="背包问题">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="背包问题总结">
                         
-                        <span class="card-title">背包问题</span>
+                        <span class="card-title">背包问题总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1.01背包问题（每个物品只能选或者不选）f[i][j]表示只看前i个物品，总体积是j的情况下的最大总价值。
-暴力搜索：
-res=max{f[n][0~V]}
-动态规划：确定状态只有0和1，写出状态转移方程
-a.0（不选第i件物品）f[i]
+                            以下内容是笔者根据背包九讲以及B站up主大雪菜讲解视频后总结的一些笔记，欢迎各位同道中人不吝赐教附上链接：　　CSDN博友分享(https://blog.csdn.net/yandaoqiusheng/article/details/847
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-20
                             </span>
                         <span class="publish-author">
                             
@@ -801,28 +802,24 @@ a.0（不选第i件物品）f[i]
                 本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2020/05/03/bei-bao-wen-ti/">
+                <a href="/2020/05/20/bei-bao-wen-ti-zong-jie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="背包问题">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="背包问题总结">
                         
-                        <span class="card-title">背包问题</span>
+                        <span class="card-title">背包问题总结</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1.01背包问题（每个物品只能选或者不选）f[i][j]表示只看前i个物品，总体积是j的情况下的最大总价值。
-暴力搜索：
-res=max{f[n][0~V]}
-动态规划：确定状态只有0和1，写出状态转移方程
-a.0（不选第i件物品）f[i]
+                            以下内容是笔者根据背包九讲以及B站up主大雪菜讲解视频后总结的一些笔记，欢迎各位同道中人不吝赐教附上链接：　　CSDN博友分享(https://blog.csdn.net/yandaoqiusheng/article/details/847
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-20
                             </span>
                         <span class="publish-author">
                             

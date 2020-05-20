@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xiang612.github.io/"/>
-  <updated>2020-05-03T07:51:16.531Z</updated>
+  <updated>2020-05-20T10:27:33.668Z</updated>
   <id>http://xiang612.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>背包问题</title>
-    <link href="http://xiang612.github.io/2020/05/03/bei-bao-wen-ti/"/>
-    <id>http://xiang612.github.io/2020/05/03/bei-bao-wen-ti/</id>
-    <published>2020-05-03T07:51:15.838Z</published>
-    <updated>2020-05-03T07:51:16.531Z</updated>
+    <title>背包问题总结</title>
+    <link href="http://xiang612.github.io/2020/05/20/bei-bao-wen-ti-zong-jie/"/>
+    <id>http://xiang612.github.io/2020/05/20/bei-bao-wen-ti-zong-jie/</id>
+    <published>2020-05-20T09:37:54.000Z</published>
+    <updated>2020-05-20T10:27:33.668Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       
         
         
-          &lt;h2 id=&quot;1-01背包问题（每个物品只能选或者不选）&quot;&gt;&lt;a href=&quot;#1-01背包问题（每个物品只能选或者不选）&quot; class=&quot;headerlink&quot;
+          &lt;p&gt;&lt;strong&gt;以下内容是笔者根据背包九讲以及B站up主大雪菜讲解视频后总结的一些笔记，欢迎各位同道中人不吝赐教&lt;/strong&gt;&lt;br&gt;附上链接：&lt;br&gt;　　CSDN博友分享(&lt;a
         
       
     
