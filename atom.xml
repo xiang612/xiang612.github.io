@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xiang612.github.io/"/>
-  <updated>2020-05-20T10:27:33.668Z</updated>
+  <updated>2020-05-22T02:17:59.582Z</updated>
   <id>http://xiang612.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>遇到的一些好用算法总结</title>
+    <link href="http://xiang612.github.io/2020/05/21/yu-dao-de-yi-xie-hao-yong-suan-fa-zong-jie/"/>
+    <id>http://xiang612.github.io/2020/05/21/yu-dao-de-yi-xie-hao-yong-suan-fa-zong-jie/</id>
+    <published>2020-05-21T15:07:15.000Z</published>
+    <updated>2020-05-22T02:17:59.582Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;　　&lt;strong&gt;写在正文前：由于近期在LeetCode刷题，遇到了很多很厉害的算法，出于分享同时也是对自己掌握内容的总结，考虑推出这篇博文，欢迎各位指教！&lt;br&gt;　　笔者根据知乎提问“世界上有哪些代码量，但很牛逼很经典的算法或项目案例？”以及在LeetCode中遇到的比
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>背包问题总结</title>

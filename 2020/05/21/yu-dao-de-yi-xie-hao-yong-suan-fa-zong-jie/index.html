@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="背包问题总结, Blog">
+    <meta name="keywords" content="遇到的一些好用算法总结, Blog">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>背包问题总结 | Blog</title>
+    <title>遇到的一些好用算法总结 | Blog</title>
     <link rel="icon" type="image/png" href="/logo.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -309,12 +309,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">背包问题总结</h1>
+                    <h1 class="description center-align post-title">遇到的一些好用算法总结</h1>
                 </div>
             </div>
         </div>
@@ -443,28 +443,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-05-20
+                    2020-05-21
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-05-20
+                    2020-05-22
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.2k
+                    3.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    14 分
                 </div>
                 
 
@@ -479,59 +479,197 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><strong>以下内容是笔者根据背包九讲以及B站up主大雪菜讲解视频后总结的一些笔记，欢迎各位同道中人不吝赐教</strong><br>附上链接：<br>　　CSDN博友分享(<a href="https://blog.csdn.net/yandaoqiusheng/article/details/84782655" target="_blank" rel="noopener">https://blog.csdn.net/yandaoqiusheng/article/details/84782655</a>)<br>　　B站学习视频(<a href="https://www.bilibili.com/video/BV1qt411Z7nE" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1qt411Z7nE</a>)</p>
+                <p>　　<strong>写在正文前：由于近期在LeetCode刷题，遇到了很多很厉害的算法，出于分享同时也是对自己掌握内容的总结，考虑推出这篇博文，欢迎各位指教！<br>　　笔者根据知乎提问“世界上有哪些代码量，但很牛逼很经典的算法或项目案例？”以及在LeetCode中遇到的比较经典的一些算法进行了总结，后续看情况不定期更新</strong><br>附上链接：<a href="https://www.zhihu.com/answer/974983270" target="_blank" rel="noopener">https://www.zhihu.com/answer/974983270</a></p>
 <hr>
-<h4 id="1-01背包问题（每个物品只能选或者不选）"><a href="#1-01背包问题（每个物品只能选或者不选）" class="headerlink" title="1. 01背包问题（每个物品只能选或者不选）"></a>1. 01背包问题（每个物品只能选或者不选）</h4><p>　　f[i][j]表示只看前i个物品，总体积是j的情况下的最大总价值。</p>
-<p>　　<strong>暴力搜索：</strong>　　　</p>
-<pre><code>res=max{f[n][0\~V]}</code></pre><p>　　<strong>动态规划：</strong>确定状态只有0和1，写出状态转移方程　　　　<br>　　　　a. 0（不选第i件物品）　　　　</p>
-<pre><code>f[i][j][0]=f[i-1][j]; //从i-1到i没有改变</code></pre><p>　　　　b. 1（选了第i件物品）</p>
-<pre><code>f[i][j][1]=f[i-1][j-Ci]+Wi;  //放了i后的体积是j，i-1的体积需要减去i的体积</code></pre><p>　　　　合并状态：</p>
-<pre><code>f[i][j]=max(f[i-1][j],f[i-1][j-Ci]+Wi)</code></pre><p>　　　<br>　　<strong>时间复杂度：O(NV) 空间复杂度：O(NV)</strong></p>
-<p>　　<strong>优化：</strong>第i件物品的状态只跟i-1的状态有关，即只需要用上一层数组，不需要全部数组</p>
-<p>　　　　a. 滚动数组（新的数据覆盖旧的数组，即只保留上一层数组，所以只需要两行数组）</p>
-<p>　　　　b. 一维数组 f[i]表示体积是i的情况下的最大总价值</p>
-<p>　　<strong>原状态方程先改成：</strong>　　　　</p>
-<pre><code>f[j]=max(f[j],f[j-Ci]+Wi)</code></pre><p>　　假如枚举到：i = 3, j = 8, v[3] = 5, w[3] = 1</p>
-<p>　　　　<strong>二维：</strong></p>
-<pre><code>dp[3][8] = max(dp[2][8], dp[2][3] + w[3]) // 此时的dp[2][8]和dp[2][3]都是上一轮的状态值</code></pre><p>　　　　<strong>一维：</strong>　　　　</p>
-<pre><code>dp[8] = max(dp[8], dp[3] + w[3]) 　//我们要保证dp[8]和dp[3]都是上一轮的状态值</code></pre><p>　　　　按照逆序的顺序，一维dp数组的更新顺序为：dp[8], dp[7], dp[6], … ,dp[3]，也就是说，在本轮更新的值，不会影响本轮中其他未更新的值！较小的index对应的状态是上一轮的状态值！<br>        如果按照顺序进行更新，dp[3] = max(dp[3], dp[0] + w[0])，对dp[3]的状态进行了更新，那么在更新dp[8]时，用到的dp[3]就不是上一轮的状态了，不满足动态规划的要求。</p>
-<p>　　<strong>tips：初始化时，如果将f都初始化为0则输出f[V],因为每一个容量都能由状态方程计算最大值，即此时f表示为&lt;=V时的最大总价值；若只初始化f[0]为0，则其余f为INF，只有放入物品后对应的那些容量能够求取最大值，其余容量均为INF，所以此时f表示容量恰为V时的最大值，因此需要遍历所有f找最大值</strong></p>
-<hr>
-<h4 id="2-完全背包问题（每个物品不限数目）"><a href="#2-完全背包问题（每个物品不限数目）" class="headerlink" title="2. 完全背包问题（每个物品不限数目）"></a>2. 完全背包问题（每个物品不限数目）</h4><p>　　<strong>二维数组：</strong>跟01背包问题类似，只不过多了选择k件，k最大为V/Ci，即：　　</p>
-<pre><code>f[i][j]=max(f[i-1][j],f[i-1][j-kCi]+kWi)</code></pre><p>　　<strong>一维数组：</strong>f[i]依旧表示在总体积是i的条件下的最大价值 　　</p>
-<pre><code>f[j]=max(f[j],f[j-Ci]+Wi)</code></pre><p>　　<strong>一般方法：</strong>在01背包的基础上，再嵌套一层循环k从0~V/Ci</p>
-<p>　　<strong>优化：</strong>在01背包的基础上，将体积从Ci~V循环，即按顺序的顺序，与01背包恰好相反</p>
-<p>　　　　从01背包我们知道，按顺序更新f时，f[j-Ci]在本轮已经更新过，也就是说f[j-Ci]是i时刻的状态而不是i-1时刻的状态，即此时第i件物品已经放入，且可能已放入多件</p>
-<hr>
-<h4 id="3-多重背包问题（每件物品最多放置s件）"><a href="#3-多重背包问题（每件物品最多放置s件）" class="headerlink" title="3. 多重背包问题（每件物品最多放置s件）"></a>3. 多重背包问题（每件物品最多放置s件）</h4><p>　　<strong>暴力解法：</strong>在01背包的基础上，加一层循环，件数从0~s循环　　</p>
-<pre><code>f[j]=max(f[j],f[j-Ci]+wi,f[j-2\*ci]+2\*ci,...f[j-s\*ci]+s\*wi)</code></pre><p>　　<strong>优化：</strong>将多重背包问题转化成01背包问题，将s件拆出来放进可选物品，每个物品只能选或者不选，怎么拆？</p>
-<p>　　　　<strong>a. 二进制优化</strong>（对于任意一个数s，s以内的所有数都能用几个数的和表示，最少需要几个数）</p>
-<p>　　　　每个数可选可不选，n个数可以表示2^n个数，2^n&gt;=s，所以n=floor(logs/log2)，但是当s不是整数幂的时候会多出来一部分，对于最后一个数，用s-1-2-4…一直到负数停止。<br>　　　　例如：0~7可以用1、2、4表示；0~10在0~7的基础上扩展了3，所以可以用1、2、4、3表示，或者用s-1-2-4=3得到</p>
-<p>　　　　此题就转化成物品个数被拆成n*log(s)个的01背包问题;</p>
-<p>　　　　<strong>b. 单调队列优化</strong>（第二层循环将体积j归类，按j%Ci分类，对于f[j-k*Ci]只能从与Ci取相同余数的那一类状态转化来）　　　　</p>
-<pre><code>f[j]=max(f[j-Ci]+Wi,f[j-2\*Ci]+2\*wi,...f[j-k\*Ci]+k\*wi)</code></pre><p>　　　　转化成单调队列（k个数的滑动窗口）里面找最大值　　　 </p>
-<pre><code>f[j+Ci]=max(f[j]+wi,f[j-Ci]+Wi,...)</code></pre><hr>
-<h4 id="4-混合背包问题（物品分三类，一次，无限次和有限次）"><a href="#4-混合背包问题（物品分三类，一次，无限次和有限次）" class="headerlink" title="4. 混合背包问题（物品分三类，一次，无限次和有限次）"></a>4. 混合背包问题（物品分三类，一次，无限次和有限次）</h4><p>　　将多重背包问题拆分转化成01背包问题，问题就转化成01背包和完全背包问题，根据物品属于哪一类，将容量从小到大或者从大到小枚举</p>
-<hr>
-<h4 id="5-二维费用的背包问题（在01背包基础上每个物品属性扩展了重量）"><a href="#5-二维费用的背包问题（在01背包基础上每个物品属性扩展了重量）" class="headerlink" title="5. 二维费用的背包问题（在01背包基础上每个物品属性扩展了重量）"></a>5. 二维费用的背包问题（在01背包基础上每个物品属性扩展了重量）</h4><p>　　增加一维表示重量 f[i][j]表示在体积为i重量为j的情况下的最大总价值,</p>
-<p>　　因为是01背包问题，多一层循环，从大到小枚举体积和重量　　</p>
-<pre><code>f[i][j]=max(f[i][j],f[i-a][j-b]+c)</code></pre><hr>
-<h4 id="6-分组背包问题（N组物品，每组物品只能选一种物品）"><a href="#6-分组背包问题（N组物品，每组物品只能选一种物品）" class="headerlink" title="6. 分组背包问题（N组物品，每组物品只能选一种物品）"></a>6. 分组背包问题（N组物品，每组物品只能选一种物品）</h4><p>　　本质还是01背包问题，每一组只能选或者不选，如果选的话，一组就退化成某一个物品,针对选择哪一个物品再增加一层循环　　</p>
-<pre><code>f[j]=max(f[j],f[j-c[0]]+w[0],f[j-c[1]]+w[1],...f[j-c[s-1]]+w[s-1])</code></pre><p>　　　　体积依旧从大到小循环</p>
-<p>　　<strong>多重背包实际上是分组背包的一种特殊情况，每一组选择k个，实际就是将这k个打包成一个物品</strong></p>
-<hr>
-<h4 id="7-背包问题求方案数（01背包基础上最优解的方案数）"><a href="#7-背包问题求方案数（01背包基础上最优解的方案数）" class="headerlink" title="7. 背包问题求方案数（01背包基础上最优解的方案数）"></a>7. 背包问题求方案数（01背包基础上最优解的方案数）</h4><p>　　增加一个数组g[i]表示体积恰好为i时的方案数，此时f在初始化时只能把f[0]初始化为0，其余初始化为-INF；</p>
-<pre><code>f[j]=max(f[j],f[j-ci]+wi)
-　　
-g[j]=f[j]==(f[j-ci]+wi)?g[j]+g[j-ci]:(f[j]\&gt;(f[j-ci]+wi)?g[j]:g[j-ci])</code></pre><p>　　然后遍历所有f找最大值，将最大值对应的g累加起来</p>
-<hr>
-<h4 id="8-背包问题求具体方案（在7的基础上输出所有可行方案中字典序最小的）"><a href="#8-背包问题求具体方案（在7的基础上输出所有可行方案中字典序最小的）" class="headerlink" title="8. 背包问题求具体方案（在7的基础上输出所有可行方案中字典序最小的）"></a>8. 背包问题求具体方案（在7的基础上输出所有可行方案中字典序最小的）</h4><p>　　根据7求出的最优解反推第i个物品有没有选<br>　　<br>　　<strong>f[i][j]表示只看前i个物品，总体积是j的情况下的最大总价值</strong>　</p>
-<pre><code>f[i][j]=max(f[i-1][j],f[i-1][j-ci]+wi)</code></pre><p>　　最优解一定为f[n][m]</p>
-<p>　　因而从后往前枚举物品，根据判断f[n][m]和f[n-1][m]以及f[n-1][m-c]+w中哪个数相等，从而判断n有没有选，如果两者相等，则表示i选或不选都可<br>　　<br>　　<strong>优化：</strong>题目要求输出字典序最小的解，假设存在一个包含第1个物品的最优解，为了确保字典序最小那么我们必然要选第一个。那么问题就转化成从2～N这些物品中找到最优解。之前的f(i,j)记录的都是前ii个物品总容量为jj的最优解，那么我们现在将f(i,j)定义为从第i个元素到最后一个元素总容量为j的最优解。接下来考虑状态转移：　　</p>
-<pre><code>f(i,j)=max(f(i+1,j),f(i+1,j−v[i])+w[i])</code></pre><p>　　两种情况，第一种是不选第i个物品，那么最优解等同于从第i+1个物品到最后一个元素总容量为j的最优解；第二种是选了第i个物品，那么最优解等于当前物品的价值w[i]加上从第i+1个物品到最后一个元素总容量为j−v[i]的最优解。</p>
-<hr>
-<h4 id="9-有依赖的背包问题（类似于课程表，有前序物品要选的01背包问题）"><a href="#9-有依赖的背包问题（类似于课程表，有前序物品要选的01背包问题）" class="headerlink" title="9. 有依赖的背包问题（类似于课程表，有前序物品要选的01背包问题）"></a>9. 有依赖的背包问题（类似于课程表，有前序物品要选的01背包问题）</h4><p>　　背包问题和树形结构结合 依旧使用二维数组f[i][j] 从根节点从上往下递归<br>　　每个节点计算对应子节点下面不同体积下的最大价值，从其中选价值最大的那一组，从而转化成分组背包问题</p>
+<h4 id="1-KMP算法（解决字符串模式匹配问题）"><a href="#1-KMP算法（解决字符串模式匹配问题）" class="headerlink" title="1.  KMP算法（解决字符串模式匹配问题）"></a>1.  KMP算法（解决字符串模式匹配问题）</h4><p>　　字符串的模式匹配，是求一个字符串T（<strong>模式串</strong>）在另一个字符串S（<strong>主串</strong>）中的位置</p>
+<p>　　KMP 算法是 D.E.Knuth、J,H,Morris 和 V.R.Pratt 三位神人共同提出的，称之为 Knuth-Morria-Pratt 算法，简称 KMP 算法。该算法相对于 Brute-Force（暴力）算法有比较大的改进，主要是<strong>消除了主串指针的回溯</strong>，从而使算法效率有了某种程度的提高。</p>
+<p>　　首先，谈一谈解决这个问题有哪些思路：<br> 　　<strong>1. 暴力搜索：</strong><br> 　　从s的第一个位置开始取跟T等长的子串，将子串依次跟T中的每个元素比较，一旦不同，则s移动至下一个位置重新取子串进行比较，直至成功匹配，或s的所有子串都已经比较完<br>　　<strong>时间复杂度：O(NM)    空间复杂度：O(1)</strong></p>
+<pre><code>int Index(string s, string t) {
+    int i =0, j = 0;
+    while(i &lt; s.length() &amp;&amp; j &lt; s.length()) {
+        if(s[i] == s[j]) {
+            i++;
+            j++;
+        }
+        else {
+            i = i - j + 1;
+            j = 0;
+        }
+    }
+    if(j == s.length())
+        return i - j;
+    return -1;
+}</code></pre><p>　　<strong>2. Hash：</strong><br>　　设|S| = n , |T| = m。如果不考虑冲突，那么我们可以将 S 的所有长度为 m 的子串hash值都求出来，<strong>复杂度为O(N)</strong>。将这 n-m+1 个子串与T的hash值在O(1)的时间内一一比对，即可通过hash值是否相同来判断是否匹配成功。<br>　　但实际上如果n和m很大(1e6)，那么散列值冲突是不可避免的，此时需要二次判断或者通过其他方法（构造更好的散列函数）来在保证速度的情况下提升正确性。<br>　　<strong>时间复杂度：O(N)    空间复杂度：O(N)</strong><br>　　哈希函数：</p>
+<pre><code>H[i] = H[i - 1]*p + val[i]</code></pre><pre><code>typedef unsigned long long ull;
+const ull B = 100000007;    //哈希的基数
 
+int Index(string s, string t) {
+    int n = s.length(), m = t.length();  
+    unordered_map&lt;int, int&gt; hashmap;
+    ull sh = 0, th = 0, t = 1;
+    for(int i = 0; i &lt; m; i++)
+    {
+        sh = sh * B + s[i];      //s和t长度为m的前缀对应哈希值
+        th = th * B + t[i];
+        t *= B;
+    }    
+    for(int i =0; i &lt; n - m; i++) {
+        if(sh == th)
+            return i;
+        sh = sh * B + s[i + m] - s[i] * t;
+    }
+    return -1;
+}</code></pre><p>　　<strong>3. KMP：</strong><br>　　我们可以发现暴力搜索的时候，中间有很多位置重复进行了不必要的判断。</p>
+<p>　　<strong>用next数组记录模式串(T)中每个位置上发生匹配失败时，下一次和主串对应位置比对的字符下标</strong></p>
+<p>　　<strong>next数组：</strong><br>　　假设我们 S[i] 和 T[j] 发生了失配，如果我们知道 “T 中以 j 为末尾的真子串” 和 T[0, j)的最长公共前后缀子串T[0,t)，那么下一次T跟S[i]比较的字符下标就为t，也就是说在next数组中j对应转移下标为t，即next[j] = t。<br>　　讲人话就是：对于模式串T，T[0,t)和T[j-t, j)是匹配的，即T[0,t) = T[j-t, j)，而我们又知道S[i-j,i) = T[0,j)，那么必然有S[i-t,i) = T[j-t,j) = T[0,t)，所以我们下一次匹配从t开始即可<br>　　<strong>时间复杂度：O(M + N)        空间复杂度：O(M)</strong></p>
+<p>　　计算next数组和KMP算法代码如下：</p>
+<pre><code>void get_next(string t, int next[]) {
+    int i = 0;
+    next[0] = -1;    //第一个字符不匹配 next值设为-1
+    int j = -1;
+    while(i &lt; t.length()) {
+        if(j == -1 || t[i] == t[j])   
+    //j == -1判断条件解决了当t[1] != t[0]时 j = next[0] = -1 数组越界
+    //同时 j == -1时 next[0] = -1符合情况
+        {                
+            ++i;
+            ++j;
+            next[i] = j;    //i和j匹配时 指向j+1
+        }
+        else            //i和j不匹配时 找更短的前后缀
+            j = next[j];
+    }
+}
+
+int KMP(string s, string t) {
+    int i = 0, j = 0;
+    while(i &lt; s.length() &amp;&amp; j &lt; t.length()) {
+        if(j == -1 || s[i] == s[j])   
+    //j == -1判断条件是因为next数组中有-1的情况 造成数组越界
+    //j == -1表明第一个字符都不匹配 s应该从下一个位置开始匹配 ++j后 j = 0
+        {
+            ++i;
+            ++j;
+        }
+        else
+            j = next[j];
+    }
+    if(j == t.length())    return i - j;
+    return -1;
+}</code></pre><hr>
+<h4 id="2-约瑟夫环"><a href="#2-约瑟夫环" class="headerlink" title="2. 约瑟夫环"></a>2. 约瑟夫环</h4><p>　　问题来源是LeetCode 面试题62. 圆圈中最后剩下的数字(<a href="https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/</a>)<br>　　约瑟夫环是一个数学的应用问题：已知n个人（以编号1，2，…n分别表示）围坐在一张圆桌周围。从编号为k的人开始报数，数到m的那个人出列；他的下一个人又从1开始报数，数到m的那个人又出列；依此规律重复下去，直到圆桌周围的人全部出列。</p>
+<p>　　解决问题的思路有哪些：<br>　　<strong>1. 循环链表：</strong><br>　　相当于模拟过程，具体代码不展示<br>　　<strong>时间复杂度：O(mn)        空间复杂度：O(n)</strong></p>
+<p>　　<strong>2. 递归(非递归)</strong><br>　　我们假设函数f(n,m)表示n个人每隔m个人淘汰一个人，最终留下来的那个人的编号。第一轮我们淘汰编号为m%n的人，此时剩下n-1个人，且下一轮第一个报号的人编号为m%n+1，也就相当于对于只有n-1个人的情况，所有人的编号往后平移m%n，我们假设f(n-1,m) = x，此时我们可以建立递推公式：</p>
+<pre><code>f(n,m) = (f(n-1,m) + m % n) % n = (x + m) % n......f(1,m) = 1</code></pre><p> 　　<strong>时间复杂度：O(n)    空间复杂度：O(n)或O(1)</strong></p>
+<pre><code>//递归
+int  lastRemain(int n, int m) {
+    if(n == 1)
+        return 1;
+    int lastRemain(n - 1, m) = x;
+    return (m + x) % n;
+}
+
+//非递归
+int  lastRemain(int n, int m) {
+    int x = 1;
+    for(int i = 2; i &lt;= n; i++)
+        x = (x + m) % i;
+    return x;
+}</code></pre><p>　　<strong>3. 数学方法</strong><br>　　假设初始编号为 1,2，…，n，现在考虑一种新的编号方式。<br>　　第一个人不会被踢掉，那么他的编号从n开始往后加 1 ，变成 n + 1，然后第二个人编号变为 n + 2，直到第 m个人，他被踢掉了。<br>　　然后第 m + 1个人编号继续加 1 ，变成了n + m，依次下去。<br>　　考虑当前踢到的人编号为km，那么此时已经踢掉了k个人，所以接来下的人的新编号为n + k(m -1) + 1…(<strong>如果没有踢掉人的话，经过k轮编号应该多了km，现在每一轮少一个编号</strong>)<br>　　所以编号为km + d的人编号变成了n + k(m - 1) + d，其中1 &lt;= d &lt; m。<br>　　直到最后，活下来的人的编号为mn（<strong>假设一共有n轮，活下来的那个人一定是在第n轮被踢掉的人，所以他的编号一定为nm</strong>）<br>　　接下来的问题就转换成怎么由新编号得知他之前的原始编号<br>　　我们假设第k轮时他的编号是N = n + k(m - 1) + d,那么他上一轮的编号是</p>
+<pre><code>km + d = km + N - n - k(m - 1) = k + N - n
+递推公式：k + N - m = N(k) = k + N(k + 1) -m
+k = (N -n - d)/(m - 1) = floor((N -n -1) / (m - 1))</code></pre><p>　　<strong>时间复杂度：O(logn)    空间复杂度：O(1)</strong></p>
+<pre><code>int lastRemain(int n, int m) {
+    int N = n*m;
+    while(N &gt; n) {
+        int k = floor((N -n -1) / (m - 1));
+        N = k + N -n;
+    }
+    return N;
+}</code></pre><hr>
+<h4 id="3-投票算法（多数元素）"><a href="#3-投票算法（多数元素）" class="headerlink" title="3. 投票算法（多数元素）"></a>3. 投票算法（多数元素）</h4><p>　　问题来源于LeetCode 169.多数元素(<a href="https://leetcode-cn.com/problems/majority-element/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/majority-element/</a>)<br>　　给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。你可以假设数组是非空的，并且给定的数组总是存在多数元素。</p>
+<p>　　此题解题方法较多，且不难想到：<br>　　<strong>1. Hash表：</strong><br>　　我们使用哈希映射（HashMap）来存储每个元素以及出现的次数。对于哈希映射中的每个键值对，键表示一个元素，值表示该元素出现的次数。<br>　　<strong>时间复杂度：O(n)    空间复杂度：O(n)</strong></p>
+<pre><code>class Solution {
+public:
+    int majorityElement(vector&lt;int&gt;&amp; nums) {
+        unordered_map&lt;int, int&gt; counts;
+        int majority = 0, cnt = 0;
+        for (int num: nums) {
+            ++counts[num];
+            if (counts[num] &gt; cnt) {
+                majority = num;
+                cnt = counts[num];
+            }
+        }
+        return majority;
+    }
+};</code></pre><p>　　<strong>2. 排序</strong><br>　　如果将数组 nums 中的所有元素按照单调递增或单调递减的顺序排序，那么下标为floor(n/2)的元素（下标从 0 开始）一定是众数。<br>　　<strong>时间复杂度：O(nlogn)    空间复杂度：O(logn)</strong></p>
+<pre><code>class Solution {
+public:
+    int majorityElement(vector&lt;int&gt;&amp; nums) {
+        sort(nums.begin(), nums.end());
+        return nums[nums.size() / 2];
+    }
+};</code></pre><p>　　<strong>3. 分治</strong><br>　　如果数 a 是数组 nums 的众数，如果我们将 nums 分成两部分，那么 a 必定是至少一部分的众数。<br>　　我们可以使用反证法来证明这个结论。假设 a 既不是左半部分的众数，也不是右半部分的众数，那么 a 出现的次数少于 l / 2 + r / 2 次，其中 l 和 r 分别是左半部分和右半部分的长度。由于 l / 2 + r / 2 &lt;= (l + r) / 2，说明 a 也不是数组 nums 的众数，因此出现了矛盾。所以这个结论是正确的。<br>　　这样以来，我们就可以使用分治法解决这个问题：将数组分成左右两部分，分别求出左半部分的众数 a1 以及右半部分的众数 a2，随后在 a1 和 a2 中选出正确的众数。<br>　　<strong>时间复杂度：O(nlogn)    空间复杂度：O(logn)</strong></p>
+<pre><code>class Solution {
+    int count_in_range(vector&lt;int&gt;&amp; nums, int target, int lo, int hi) {
+        int count = 0;
+        for (int i = lo; i &lt;= hi; ++i)
+            if (nums[i] == target)
+                ++count;
+        return count;
+    }
+    int majority_element_rec(vector&lt;int&gt;&amp; nums, int lo, int hi) {
+        if (lo == hi)
+            return nums[lo];
+        int mid = (lo + hi) / 2;
+        int left_majority = majority_element_rec(nums, lo, mid);
+        int right_majority = majority_element_rec(nums, mid + 1, hi);
+        if (count_in_range(nums, left_majority, lo, hi) &gt; (hi - lo + 1) / 2)
+            return left_majority;
+        if (count_in_range(nums, right_majority, lo, hi) &gt; (hi - lo + 1) / 2)
+            return right_majority;
+        return -1;
+    }
+public:
+    int majorityElement(vector&lt;int&gt;&amp; nums) {
+        return majority_element_rec(nums, 0, nums.size() - 1);
+    }
+};</code></pre><p>　　<strong>4. Boyer-Moore 投票算法</strong><br>　　如果我们把众数记为 +1+1，把其他数记为 -1−1，将它们全部加起来，显然和大于 0，从结果本身我们可以看出众数比其他数多。</p>
+<p>　　Boyer-Moore 算法的本质和分治类似：</p>
+<ol>
+<li><p>我们维护一个候选众数 candidate 和它出现的次数 count。初始时 candidate 可以为任意值，count 为 0；</p>
+</li>
+<li><p>我们遍历数组 nums 中的所有元素，对于每个元素 x，在判断 x 之前，如果 count 的值为 0，我们先将 x 的值赋予 candidate，随后我们判断 x：<br>　2.1 如果 x 与 candidate 相等，那么计数器 count 的值增加 1；<br>　2.2 如果 x 与 candidate 不等，那么计数器 count 的值减少 1。</p>
+</li>
+<li><p>在遍历完成后，candidate 即为整个数组的众数。</p>
+</li>
+</ol>
+<p>　　<strong>时间复杂度：O(n)    空间复杂度：O(1)</strong></p>
+<pre><code>class Solution {
+public:
+    int majorityElement(vector&lt;int&gt;&amp; nums) {
+        int candidate = -1;
+        int count = 0;
+        for (int num : nums) {
+            if (num == candidate)
+                ++count;
+            else if (--count &lt; 0) {
+                candidate = num;
+                count = 1;
+            }
+        }
+        return candidate;
+    }
+};</code></pre><hr>
+<h4 id="4-洗牌算法"><a href="#4-洗牌算法" class="headerlink" title="4. 洗牌算法"></a>4. 洗牌算法</h4><p>　　转载知乎大佬<strong>程序员吴师兄</strong>的回答(<a href="https://www.zhihu.com/question/358255792/answer/974431591" target="_blank" rel="noopener">https://www.zhihu.com/question/358255792/answer/974431591</a>)<br>　　先来思考一个问题：<strong>有一个大小为 100 的数组，里面的元素是从 1 到 100 按顺序排列，怎样随机的从里面选择 1 个数？</strong><br>　　最简单的方法是利用系统的方法 Math.random() * 100 ，这样就可以拿到一个 0 到 99 的随机数，然后去数组找对应的位置就即可。<br>　　接下来在思考一个问题： <strong>有一个大小为100的数组，里面的元素是从 1 到 100 按顺序排列，怎样随机的从里面选择 50 个数？注意数字不能重复！注意数字不能重复！注意数字不能重复！</strong><br>　　如果根据上面的思路，你第一想法是：随机 50 次不就行了？但是，这样做有个很明显的 bug ：数字是会重复的。<br>　　修改一下？弄一个数组，把每一次随机的数都放到数组里，下一次随机就看这个数组里面有没有这数，有的话就继续随机，直到这个数组里面有 50 个数字就停止。这样是可以的！但，还是有个小问题，考虑一下极端情况：<strong>有一个大小为100的数组，里面的元素是从 1 到 100 按顺序排列，怎样随机的从里面选择 99 个数。</strong>如果按照上面的方法操作，越往后选择的数字跟前面已经挑选的数字重复的概率越高，这就会造成如果数组很大，选择的数字数目也很大的话，重复次数在量级上会很大。<br>　　这个时候就需要换一个思路，如果先将数组里面的元素<strong>打乱</strong>，那么按顺序选择前 50 个不就可以了？<br><strong>——–接下来就是响当当的洗牌算法出场了——–</strong><br>　　这个算法很牛逼却很好理解，通俗的解释就是：将最后一个数和前面任意 n-1 个数中的一个数进行交换，然后倒数第二个数和前面任意 n-2 个数中的一个数进行交换。。。</p>
+<pre><code>void shuffle(vector&lt;int&gt;&amp; nums) {
+    int len = nums.size();
+    for(int i = len - 1; i &gt;= 0; i--)
+        swap(nums[i], nums[rand(0,i)]);
+}</code></pre><p>　　<strong>tips：其实就相当于是数学中的全排列，目前库里已经有shuffle函数，可以直接调用，在蚁群算法初始化蚂蚁位置还有遗传算法赌轮盘中还是很有用处滴！</strong></p>
+<hr>
+<h4 id="To-be-continue…"><a href="#To-be-continue…" class="headerlink" title="To be continue…."></a>To be continue….</h4>
             </div>
             <hr/>
 
@@ -556,7 +694,7 @@ g[j]=f[j]==(f[j-ci]+wi)?g[j]+g[j-ci]:(f[j]\&gt;(f[j-ci]+wi)?g[j]:g[j-ci])</code>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://xiang612.github.io/2020/05/20/bei-bao-wen-ti-zong-jie/">http://xiang612.github.io/2020/05/20/bei-bao-wen-ti-zong-jie/</a>
+                    <a href="http://xiang612.github.io/2020/05/21/yu-dao-de-yi-xie-hao-yong-suan-fa-zong-jie/">http://xiang612.github.io/2020/05/21/yu-dao-de-yi-xie-hao-yong-suan-fa-zong-jie/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -759,9 +897,10 @@ g[j]=f[j]==(f[j-ci]+wi)?g[j]+g[j-ci]:(f[j]\&gt;(f[j-ci]+wi)?g[j]:g[j-ci])</code>
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/05/21/yu-dao-de-yi-xie-hao-yong-suan-fa-zong-jie/">
                     <div class="card-image">
@@ -779,9 +918,9 @@ g[j]=f[j]==(f[j-ci]+wi)?g[j]+g[j-ci]:(f[j]\&gt;(f[j-ci]+wi)?g[j]:g[j-ci])</code>
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -790,6 +929,7 @@ g[j]=f[j]==(f[j-ci]+wi)?g[j]+g[j-ci]:(f[j]\&gt;(f[j-ci]+wi)?g[j]:g[j-ci])</code>
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -797,7 +937,7 @@ g[j]=f[j]==(f[j-ci]+wi)?g[j]+g[j-ci]:(f[j]\&gt;(f[j-ci]+wi)?g[j]:g[j-ci])</code>
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2020/05/20/bei-bao-wen-ti-zong-jie/">
@@ -827,7 +967,6 @@ g[j]=f[j]==(f[j-ci]+wi)?g[j]+g[j-ci]:(f[j]\&gt;(f[j-ci]+wi)?g[j]:g[j-ci])</code>
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
