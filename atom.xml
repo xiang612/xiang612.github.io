@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xiang612.github.io/"/>
-  <updated>2020-05-22T02:17:59.582Z</updated>
+  <updated>2020-06-19T03:22:55.783Z</updated>
   <id>http://xiang612.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++中isalpha、isalnum、islower、isupper等的用法</title>
+    <link href="http://xiang612.github.io/2020/06/19/c-zhong-isalpha-isalnum-islower-isupper-deng-de-yong-fa/"/>
+    <id>http://xiang612.github.io/2020/06/19/c-zhong-isalpha-isalnum-islower-isupper-deng-de-yong-fa/</id>
+    <published>2020-06-19T02:49:57.635Z</published>
+    <updated>2020-06-19T03:22:55.783Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;strong&gt;isalpha、islower、isupper、isalnum、isblank、isspace这些函数都在&lt;code&gt;&amp;lt;cctype&amp;gt;&lt;/code&gt;(即C语言中的&lt;code&gt;&amp;lt;ctype.h&amp;gt;&lt;/code&gt;）的头文件里面&lt;/stron
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>遇到的一些好用算法总结</title>
